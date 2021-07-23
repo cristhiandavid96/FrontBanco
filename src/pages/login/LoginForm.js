@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Grid, Icon, Card, Form, Button } from 'semantic-ui-react'
 import Message from '../../components/message/Message'
 import { Redirect } from 'react-router-dom'
-import propTypes from 'prop-types'
 import { hot } from 'react-hot-loader/root'
 import { useForm } from '../../hooks/useForm/useForm'
 import { useValidate } from '../../hooks/useValidate/useValidate'
@@ -23,7 +22,7 @@ function LoginForm() {
   const handleFormSubmit = async () => {
     let response = await useValidate(LoginRules, formValues)
     if (response.isValid) {
-      reset()
+      reset(formValues)
       setIsLoguin(true)
     } else {
       setMessageForm({ type: { negative: true }, body: response.errors })
@@ -71,7 +70,4 @@ function LoginForm() {
   )
 }
 
-LoginForm.propTypes = {
-  style: propTypes.object.isRequired
-}
 export default hot(LoginForm)
