@@ -7,8 +7,9 @@ import { hot } from 'react-hot-loader/root'
 import { useForm } from '../../hooks/useForm/useForm'
 import { useValidate } from '../../hooks/useValidate/useValidate'
 import LoginRules from './LoginRules'
+import './index.css'
 
-function LoginForm({ style }) {
+function LoginForm() {
   const [isLoguin, setIsLoguin] = useState(false)
   const [messageForm, setMessageForm] = useState(null)
 
@@ -36,7 +37,7 @@ function LoginForm({ style }) {
   return (
     <>
       <Grid container-fluid="true" centered>
-        <Grid.Column style={style.gridContent} mobile={16} tablet={8} computer={4}>
+        <Grid.Column className="loginform" mobile={16} tablet={8} computer={4}>
           <Card fluid>
             <Card.Content>
               <Card.Meta>
@@ -44,9 +45,9 @@ function LoginForm({ style }) {
                   <Icon loading size="big" name="spinner" />
                   <Icon name="settings" size="small" />
                 </Icon.Group>
-                PAAM
+                COGNOX
               </Card.Meta>
-              <Card.Header>Módulo De Permisos, Administración Y Autenticación </Card.Header>
+              <Card.Header>Transferencias Bancarias</Card.Header>
               <Card.Description>
                 {messageForm ? <Message data={messageForm} /> : null}
                 <Form onSubmit={handleFormSubmit}>
@@ -62,7 +63,7 @@ function LoginForm({ style }) {
                 </Form>
               </Card.Description>
             </Card.Content>
-            <Card.Content extra>PAAM</Card.Content>
+            <Card.Content extra>COGNOX</Card.Content>
           </Card>
         </Grid.Column>
       </Grid>
