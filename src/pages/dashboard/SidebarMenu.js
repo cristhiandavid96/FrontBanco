@@ -15,15 +15,15 @@ export const SidebarMenu = () => {
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink to="/projects">
+        <NavLink to="/cuentas">
           <Icon name="sitemap" />
-          Transacciones Bancarias
+          Estado de la cuenta          
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink to="/users">
+        <NavLink to="/transacciones">
           <Icon name="users" />
-          Estado de la cuenta
+          Transacciones Bancarias
         </NavLink>
       </Menu.Item>
     </div>
