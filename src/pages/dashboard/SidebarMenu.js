@@ -6,8 +6,7 @@ import '../dashboard/index.css'
 export const SidebarMenu = () => {
   return (
     <div className="container-sidebar-menu">
-      <Menu.Item>
-        {/* <Image src={milogo} size="mini" centered /> */}
+      <Menu.Item>        
       </Menu.Item>
       <Menu.Item>
         <NavLink to="/home">
@@ -18,13 +17,13 @@ export const SidebarMenu = () => {
       <Menu.Item>
         <NavLink to="/projects">
           <Icon name="sitemap" />
-          Admon proyectos banco
+          Transacciones Bancarias
         </NavLink>
       </Menu.Item>
       <Menu.Item>
         <NavLink to="/users">
           <Icon name="users" />
-          Admon usuarios
+          Estado de la cuenta
         </NavLink>
       </Menu.Item>
     </div>

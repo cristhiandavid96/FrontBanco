@@ -5,7 +5,7 @@ export const useValidate = async (initialRules, formValues) => {
   let data = initialRules({
     mixed: {
       required: ({ path }) => `El campo ${path} es requerido`
-    }
+    },
   })
 
   const responseFormat = (isValid, errors) => {

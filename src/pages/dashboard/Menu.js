@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { Dropdown, Icon } from 'semantic-ui-react'
 import '../dashboard/index.css'
+import {getName} from '../../helpers/user';
 
 const MenuRight = () => {
   const getIcon = () => {
@@ -11,9 +12,8 @@ const MenuRight = () => {
     <div className="exit">
       <Dropdown item icon={getIcon()}>
         <Dropdown.Menu direction="left">
-          <Dropdown.Item>cristhian velez</Dropdown.Item>
-          <Dropdown.Item>¿desea salir?</Dropdown.Item>
-          <Dropdown.Item>Mas</Dropdown.Item>
+          <Dropdown.Item>{'usuario : '+getName()}</Dropdown.Item>
+          <Dropdown.Item href="/" onClick={() => { localStorage.removeItem('jwt') }}  >Salir</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </div>

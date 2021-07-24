@@ -7,23 +7,33 @@ import { useForm } from '../../hooks/useForm/useForm'
 import { useValidate } from '../../hooks/useValidate/useValidate'
 import LoginRules from './LoginRules'
 import './index.css'
+import {getAuth} from  '../../services/Auth'
 
 function LoginForm() {
   const [isLoguin, setIsLoguin] = useState(false)
   const [messageForm, setMessageForm] = useState(null)
 
   const [formValues, handleInputChange, reset] = useForm({
-    username: '',
+    documento: '',
     password: ''
   })
 
-  const { username, password } = formValues
+  const { documento, password } = formValues
 
   const handleFormSubmit = async () => {
     let response = await useValidate(LoginRules, formValues)
     if (response.isValid) {
       reset(formValues)
-      setIsLoguin(true)
+      await getAuth(formValues).then(resp=>{
+        if(resp.res){
+          localStorage.setItem('jwt', JSON.stringify(resp))
+          setIsLoguin(true)          
+        }else{
+          setMessageForm({ type: { negative: true }, body: 'credenciales invaldias'})    
+        }
+
+      })
+
     } else {
       setMessageForm({ type: { negative: true }, body: response.errors })
     }
@@ -51,7 +61,7 @@ function LoginForm() {
                 {messageForm ? <Message data={messageForm} /> : null}
                 <Form onSubmit={handleFormSubmit}>
                   <Form.Field>
-                    <Form.Input value={username} name="username" autoComplete="off" id="username" onChange={handleInputChange} placeholder="user" icon="user circle" />
+                    <Form.Input value={documento} name="documento" autoComplete="off" id="documento" onChange={handleInputChange} placeholder="numero de identificación" type="number" icon="user circle" />
                   </Form.Field>
                   <Form.Field>
                     <Form.Input value={password} name="password" id="password" autoComplete="off" onChange={handleInputChange} placeholder="password" type="password" icon="lock" />

@@ -1,8 +1,7 @@
 import requestHttp from './RequestHttp'
-const baseUrl = window.baseUrl + '/users/list'
+const baseUrl = window.baseUrl + '/api/login'
 
-export const getAuth = async () => {
-  let response = await requestHttp.get(baseUrl, { data: {} })
-  console.log(response)
+export const getAuth = async (data) => {
+  let response = await requestHttp.post(baseUrl, data)
   return response?.data || null
 }
