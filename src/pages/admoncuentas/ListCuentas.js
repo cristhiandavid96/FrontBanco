@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Button, Icon, Table, Header, Image, Modal } from 'semantic-ui-react'
 import { ListCuenta } from '../../services/Cuentas'
 import Admoncuentas from './AdmonCuentasForm'
+import { getId } from '../../helpers/user';
+
 
 
 export const ListCuentas = () => {
   const [listForm, setListForm] = useState([])
   const [bandera, setBandera] = useState(false)
   const [open, setOpen] = useState(false)
-  
+
   const PrintCuentas = () => {
     return (
       <>
@@ -25,14 +27,15 @@ export const ListCuentas = () => {
   }
 
   const resolve = async () => {
-    await ListCuenta().then(res => {
-
-      setListForm(res?.res)
+    await ListCuenta(getId()).then(res => {
+      if (res?.res?.length > 0) {
+        setListForm(res?.res)
+      }
     })
   }
   useEffect(() => {
     let isMount = true
-    if (isMount && listForm.length == 0) {
+    if (bandera === false && listForm.length == 0) {
       resolve()
     }
     return () => {
@@ -42,15 +45,15 @@ export const ListCuentas = () => {
 
   useEffect(() => {
     let isMount = true
-    if (bandera===true) {
+    if (bandera === true && isMount) {
+      setBandera(false)
       setOpen(false)
       resolve()
-      setBandera(false)
     }
     return () => {
       isMount = false
     }
-  },[bandera])
+  }, [bandera, listForm])
   return (
     <>
       <Modal
@@ -62,7 +65,7 @@ export const ListCuentas = () => {
         <Modal.Header>Creación de Cuentas</Modal.Header>
         <Modal.Content >
           <Modal.Description>
-            <Admoncuentas bandera={(prop)=>setBandera(prop)} />
+            <Admoncuentas bandera={(prop) => setBandera(prop)} />
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>

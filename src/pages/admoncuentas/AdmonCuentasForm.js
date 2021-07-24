@@ -6,6 +6,7 @@ import Message from '../../components/message/Message'
 import { useValidate } from '../../hooks/useValidate/useValidate'
 import CuentasRules from './CuentasRules'
 import FieldsForm from './InitFieldsForm'
+import {getId} from '../../helpers/user'
 
 const AdmonCuentasForm = ({bandera}) => {
   const [messageForm, setMessageForm] = useState(null)
@@ -16,7 +17,7 @@ const AdmonCuentasForm = ({bandera}) => {
 
   const handleFormSubmit = async () => {
     let response = await useValidate(CuentasRules, formValues)
-
+    Object.assign(formValues,{usuario_id:getId()})  
     if (response.isValid) {      
       await saveCuenta(formValues).then(res => {
         setMessageForm({ type: { success: true }, header: 'La cuenta se guardo con éxito!!' })

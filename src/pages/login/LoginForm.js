@@ -7,10 +7,14 @@ import { useForm } from '../../hooks/useForm/useForm'
 import { useValidate } from '../../hooks/useValidate/useValidate'
 import LoginRules from './LoginRules'
 import './index.css'
-import {getAuth} from  '../../services/Auth'
+import { getAuth } from '../../services/Auth'
+import RegistroUsuario from './RegistroUsuario'
+
+
 
 function LoginForm() {
   const [isLoguin, setIsLoguin] = useState(false)
+  const [isNewRecord, setIsNewRecord] = useState(false)
   const [messageForm, setMessageForm] = useState(null)
 
   const [formValues, handleInputChange, reset] = useForm({
@@ -24,12 +28,12 @@ function LoginForm() {
     let response = await useValidate(LoginRules, formValues)
     if (response.isValid) {
       reset(formValues)
-      await getAuth(formValues).then(resp=>{
-        if(resp.res){
+      await getAuth(formValues).then(resp => {
+        if (resp.res) {
           localStorage.setItem('jwt', JSON.stringify(resp))
-          setIsLoguin(true)          
-        }else{
-          setMessageForm({ type: { negative: true }, body: 'credenciales invaldias'})    
+          setIsLoguin(true)
+        } else {
+          setMessageForm({ type: { negative: true }, body: 'credenciales invaldias' })
         }
 
       })
@@ -48,6 +52,7 @@ function LoginForm() {
       <Grid container-fluid="true" centered>
         <Grid.Column className="loginform" mobile={16} tablet={8} computer={4}>
           <Card fluid>
+            {(isNewRecord) ? <RegistroUsuario /> :
             <Card.Content>
               <Card.Meta>
                 <Icon.Group size="big">
@@ -67,12 +72,16 @@ function LoginForm() {
                     <Form.Input value={password} name="password" id="password" autoComplete="off" onChange={handleInputChange} placeholder="password" type="password" icon="lock" />
                   </Form.Field>
                   <Button fluid type="submit" primary>
-                    INGRESAR
+                    Ingresar
                   </Button>
                 </Form>
               </Card.Description>
+            </Card.Content>}
+            <Card.Content extra>
+              <Button fluid type="submit" primary onClick={() => setIsNewRecord(!isNewRecord)}>
+              {(isNewRecord ===true) ? 'Iniciar  sesión' : 'Registrate'}
+              </Button>
             </Card.Content>
-            <Card.Content extra>COGNOX</Card.Content>
           </Card>
         </Grid.Column>
       </Grid>
