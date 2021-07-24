@@ -13,5 +13,5 @@ Tambien nos encontraremos  con la implementacion de las  siguientes librerias:
 Comandos para iniciar el proyecto
 
 npm install (descargar las dependencias del proyecto)
-npm build (generar el building de el aplicativo)
+npm build (generar el building del aplicativo)
 npm start (iniciar el proyecto,por defecto se configuro el webpack para que funcione en el puerto 3009)
