@@ -20,3 +20,13 @@ export const DeleteCuenta = async (id) => {
   let response = await requestHttp.delete(baseUrl + '/api/cuentasbancarias/'+id)
   return response?.data || null
 }
+
+export const BuscarCuenta = async (id) => {
+  let response = await requestHttp.get(baseUrl + '/api/cuentasbancarias/cuentas?usuario_id='+id, { data: {} })
+  return response?.data || null
+}
+
+export const ListAllCuenta = async () => {
+  let response = await requestHttp.get(baseUrl + '/api/cuentasbancarias/all', { data: {} })
+  return response?.data || null
+}

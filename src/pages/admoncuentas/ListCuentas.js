@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,memo} from 'react'
 import { Button, Icon, Table, Header, Image, Modal } from 'semantic-ui-react'
 import { ListCuenta } from '../../services/Cuentas'
 import Admoncuentas from './AdmonCuentasForm'
-import { getId } from '../../helpers/user';
+import { getId } from '../../helpers/user'
 
 
 
-export const ListCuentas = () => {
+ const ListCuentas = () => {
   const [listForm, setListForm] = useState([])
   const [bandera, setBandera] = useState(false)
   const [open, setOpen] = useState(false)
@@ -98,3 +98,5 @@ export const ListCuentas = () => {
     </>
   )
 }
+
+export  default memo(ListCuentas)

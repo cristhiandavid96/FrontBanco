@@ -1,13 +1,13 @@
 import React, { memo } from 'react'
-import AdmonUsersForm from './AdmonUsersForm'
+import AdmonTransaccionesForm from './AdmonTransaccionesForm'
 import {  Redirect } from 'react-router-dom'
 
-const AdmonUsers = () => {
+const AdmonTransaccion = () => {
   if (!(localStorage.getItem("jwt"))) {
     return <Redirect path="/" to="/" />
   }else{
-    return <AdmonUsersForm />
+    return <AdmonTransaccionesForm />
   }
 }
 
-export default memo(AdmonUsers)
+export default memo(AdmonTransaccion)

@@ -8,11 +8,18 @@ export const useForm = (initialState = {}) => {
   }
 
   const handleInputChange = ({ target }) => {
+
     setValues({
       ...values,
       [target.name]: target.value
     })
   }
+  const handleInputChangeDropdown = (event, data) => {
+    setValues({
+      ...values,
+      [data.name]:data.value
+    })
+  }
 
-  return [values, handleInputChange, reset]
+  return [values, handleInputChange, reset,handleInputChangeDropdown]
 }

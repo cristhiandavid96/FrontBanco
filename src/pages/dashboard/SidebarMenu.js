@@ -22,7 +22,7 @@ export const SidebarMenu = () => {
       </Menu.Item>
       <Menu.Item>
         <NavLink to="/transacciones">
-          <Icon name="users" />
+          <Icon name="handshake outline" />
           Transacciones Bancarias
         </NavLink>
       </Menu.Item>
