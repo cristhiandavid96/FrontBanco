@@ -19,6 +19,7 @@ module.exports = {
       '@assets': path.resolve(__dirname, 'src/assets/')
     }
   },
+  devtool: 'inline-source-map',
   mode: 'production',
   module: {
     rules: [
