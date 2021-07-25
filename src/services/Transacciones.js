@@ -6,8 +6,8 @@ export const saveTransaccion = async body => {
   return response || null
 }
 
-export const ListTransaccion = async () => {
-  let response = await requestHttp.get(baseUrl + '/api/transacciones', { data: {} })
+export const ListTransaccion = async (id) => {
+  let response = await requestHttp.get(baseUrl + '/api/transacciones?usuario_id='+id, { data: {} })
   return response?.data || null
 }
 
