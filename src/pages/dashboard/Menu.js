@@ -13,7 +13,7 @@ const MenuRight = () => {
       <Dropdown item icon={getIcon()}>
         <Dropdown.Menu direction="left">
           <Dropdown.Item>{'usuario : '+getName()}</Dropdown.Item>
-          <Dropdown.Item href="/" onClick={() => { localStorage.removeItem('jwt') }}  >Salir</Dropdown.Item>
+          <Dropdown.Item href="/FrontBanco/#/" onClick={() => { localStorage.removeItem('jwt') }}  >Salir</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </div>
